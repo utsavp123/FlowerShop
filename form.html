@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Registration form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-3 overflow-hidden">
+        <div class="h3 text-center">User Login Page And Information</div>
+        <div class="row justify-content-between mx-2  ">
+            <div class="col-md-3 col-12 px-5 py-2 text-center">
+                <button type="button" id="modalb" onclick="myFunctionInsertRecord()" class="btn btn-primary w-auto"
+                    data-bs-toggle="modal" data-bs-target="#myModal">
+                    Registration Form
+                </button>
+            </div>
+            <div class="col-md-6 col-12 px-5 py-2">
+                <input type="search" class=" rounded form-control bg-white " id="search" placeholder="Search"
+                    aria-label="Search" aria-describedby="search-addon" />
+            </div>
+            <div class="col-md-3 col-12 px-5 py-2 text-center">
+                <button type="button" class="btn btn-primary w-auto ">
+                    <a class="text-white text-decoration-none" href="index.html">Back to lobby</a>
+                    
+                </button>
+
+            </div>
+        </div>
+        <div class="table-responsive text-nowrap">
+            <table class="table  mt-3 table-bordered table-hover sortable" id="topScores">
+                <thead class="" id="topScores1">
+                    <tr>
+                        <th onclick=" sortListDir(1)">No.</th>
+                        <th onclick=" sortListDir(2)">Firstname</th>
+                        <th onclick=" sortListDir(3)">Middlename</th>
+                        <th onclick=" sortListDir(4)">Lastname</th>
+                        <th onclick=" sortListDir(5)">DOB</th>
+                        <th onclick=" sortListDir(6)">Gender</th>
+                        <th onclick=" sortListDir(7)">Add-1</th>
+                        <th onclick=" sortListDir(8)">Country</th>
+                        <th onclick=" sortListDir(9)">State</th>
+                        <th onclick=" sortListDir(10)">City</th>
+                        <th onclick=" sortListDir(11)">PinCode</th>
+                        <th onclick=" sortListDir(12)">Username</th>
+                        <th onclick=" sortListDir(13)">Email</th>
+                        <th onclick=" sortListDir(14)">Password</th>
+                        <th onclick=" sortListDir(15)">Hobby</th>
+                        <th onclick=" sortListDir(16)">Skills</th>
+                        <th onclick="">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-primary" id="tbody"></tbody>
+            </table>
+        </div>
+        <div aria-label="Page navigation example" id="pagination" class="mt-2 row ">
+
+            <div class="col-md-4 col-12 h-25  mx-auto   ">
+                <select class="form-select  px-4 col-md-2 mx-auto col-12 " id="pagesNumberOfData"
+                    onchange="savePlayer()" aria-label="Default select example">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-12 mx-auto ">
+                <ul class="pagination col-1 m-1 mx-4  " id="pages">
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="disp ">
+                        <i class="fa fa-close float-end m-2 icon" style="font-size:24px ; color:black"
+                            onclick="myFunctionClose()" data-bs-dismiss="modal"></i>
+                        <!-- <i class="fa float-lg-end  m-2">&#xf2d3;</i> -->
+                        <div class=" hader p-sm-3 p-1  text-white text-center">
+                            <h2>Registration Form
+                                <i class="fa fa-close float-end m-2" style="font-size:24px ; color:black"
+                                    onclick="myFunctionClose()" data-bs-dismiss="modal"></i>
+                            </h2>
+                        </div>
+
+                        <div class="row p-sm-3 p-0">
+                            <div class="col-4  img">
+                                <div class=" hader-2 p-sm-3 p-1  text-white text-center">
+                                    <h2>Registration Form</h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-12">
+                                <form action="" id="myForm">
+                                    <div class="container mt-sm-2 mt-1">
+                                        <div class="row">
+                                            <div class="col-sm-4 col-12 p-2  form-floating ">
+                                                <input type="text" class="w-100  h-75 form-control"
+                                                    onchange="myChange()" placeholder="First Name" id="fname"
+                                                    oninput="this.value = this.value.replace(/[^A-Za-z.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                    name="fname">
+                                                <label for="fname">First Name</label>
+                                                <span id="validFname">Please Enter Valid Details</span>
+
+                                            </div>
+                                            <div class="col-sm-4 col-12 p-2 form-floating ">
+                                                <input type="text" class="w-100 h-75 form-control" onchange="myChange()"
+                                                    oninput="this.value = this.value.replace(/[^A-Za-z.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                    placeholder="middle name" id="mname" name="mname">
+                                                <label for="fname">Middle Name</label>
+                                                <span id="validMname">Please Enter Valid Details</span>
+                                            </div>
+                                            <div class="col-sm-4 col-12 p-2 form-floating ">
+                                                <input type="text" class="w-100 h-75 form-control" onchange="myChange()"
+                                                    oninput="this.value = this.value.replace(/[^A-Za-z.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                    placeholder="last name" id="lname" name="lname">
+                                                <label for="fname">Last Name</label>
+                                                <span id="validLname">Please Enter Valid Details</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4 col-12 p-2 form-floating date">
+                                                <input type="date" class="form-control h-auto" placeholder="" id="dob"
+                                                    name="dob">
+                                                <label for="dob" class="dobLabel">Date Of Birth</label>
+                                                <span id="validBdate">Please Enter Your Birth Date </span>
+                                            </div>
+                                            <div class="mt-2 col-sm-8  p-2  col-12" id="gender">
+                                                <div class=" mx-1 row">
+                                                    <div class="form-check-inline col-sm-4  col-5 ">
+                                                        <label for="">Gender :-</label>
+                                                    </div>
+                                                    <div class="col-sm-7 col-6">
+
+                                                        <div class="form-check form-check-inline">
+                                                            <input type="radio" id="male" name="gender" value="Male"
+                                                                class="form-check-input">
+                                                            <label for="male" class="form-check-label">Male</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input type="radio" id="female" value="Female" name="gender"
+                                                                class="form-check-input">
+                                                            <label for="female" class="form-check-label">Female</label>
+                                                        </div>
+                                                    </div>
+                                                    <span id="validGender">Please Enter Your Gender Date </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mt-3 " id="address">
+                                            <div class="w-100 h-auto  form-floating ">
+                                                <div class=" h-auto form-control">
+                                                    <div class="px-2 row w-auto ">
+                                                        <textarea class="col-12 p-2 rounded-2 mt-2" name="addressOne"
+                                                            id="addressOne" rows="2" placeholder="Address-1"></textarea>
+                                                        <span id="validAddressOne">Please Enter Details</span>
+                                                        <textarea class="col-12 p-2 rounded-2 mt-4" name="addressTwo"
+                                                            id="addressTwo" placeholder="Address-2"></textarea>
+                                                        <span id="validAddressTwo">Please Enter Details</span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-12 px-2 pt-4  ">
+                                                            <select id="country" class="form-select" name="country"
+                                                                onchange="changeCountry()">
+                                                                <option value="" selected>Country</option>
+                                                                <option value="USA">USA</option>
+                                                                <option value="Indonesia">Indonesia</option>
+                                                                <option value="India">India</option>
+                                                            </select>
+                                                            <span id="validCountry">Please Select Country</span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-12 px-2 pt-4  ">
+                                                            <select name="state" id="state" class="form-select"
+                                                                onchange="changeState()">
+                                                                <option value="" selected>State</option>
+                                                            </select>
+                                                            <span id="validState">Please Select State</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row ">
+                                                        <div class="col-sm-6 col-12 px-2 pt-4">
+                                                            <select class="form-select  " name="city" id="city">
+                                                                <option value="" selected>City</option>
+
+                                                            </select>
+                                                            <span id="validCity">Please Select City</span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-12 px-2 pt-4 pin-c form-floating ">
+                                                            <input type="text" class="w-100  h-75 form-control"
+                                                                placeholder="Pin-code" id="pinCode" name="pin-code"
+                                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+                                                            <label for="pin-code" class="m-3 mx-2">Pin-code </label>
+                                                            <span id="validPincode">Please Enter Valid Pincode</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <label for="fname" class="addLable">Address</label>
+                                            </div>
+                                        </div>
+                                        <div class="row profile mt-3">
+                                            <div class="col-sm-6 col-12 p-2 form-floating">
+                                                <input type="text" class="w-100  h-75 form-control"
+                                                    placeholder="Username" id="userName" name="userName">
+                                                <label for="userName">Username</label>
+                                                <span id="validUsername">Please Enter Your Username</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12 p-2 form-floating">
+
+                                                <input type="text" class="w-100  h-75 form-control"
+                                                    placeholder="Email-Id" id="emaiId" name="emaiId">
+                                                <label for="emaiId">Email-Id</label>
+                                                <span id="validEmailId">Please Enter Your Valid Email-Id</span>
+                                            </div>
+                                        </div>
+                                        <div class="row profile mt-2">
+                                            <div class="col-sm-6 col-12 p-2 form-floating">
+                                                <input type="password" class="w-100  h-75 form-control"
+                                                    placeholder="Password" id="password" name="password">
+                                                <i class="bi bi-eye-slash" onclick="passwordIcon()"
+                                                    id="togglePassword"></i>
+
+
+                                                <label for="password">Password</label>
+                                                <span id="validPasswordNone">Please Enter Your Password</span>
+                                                <span id="validPassword">Your password must be at least 8
+                                                    characters</span>
+                                            </div>
+                                            <div class="col-sm-6 col-12  p-2 form-floating">
+                                                <input type="password" class="w-100  h-75 form-control"
+                                                    placeholder="Confirm Password " id="confPass" name="confPass">
+                                                <i class="bi bi-eye-slash" onclick="confPassIcon()"
+                                                    id="togglePassword2"></i>
+                                                <label for="confPass">Confirm Password </label>
+                                                <span id="validConPassword">Please Enter Your Confirm Password</span>
+                                            </div>
+                                            <div class="text-center">
+                                                <span id="matchPassword">The password and confirmation password do not
+                                                    match.</span>
+                                            </div>
+                                        </div>
+                                        <div class="row  my-3 px-4 " id="hobby">
+                                            <div class=" col-md-3 px-2 col-sm-4 col-6">
+                                                <label for="">Hobby :-</label>
+                                            </div>
+                                            <div class="col-md-9 col-sm-8 col-6">
+                                                <div class=" col-md-5  col-12  form-check-inline">
+                                                    <input type="checkbox" id="allCheckBox" onclick="allCheckBoxClick()"
+                                                        name="hobby" class="form-check-input">
+                                                    <label for="allCheckBox" class="form-check-label">All</label>
+                                                </div>
+                                                <div class=" col-md-5 col-12    form-check-inline">
+                                                    <input type="checkbox" id="playGame" value="Play Game" name="hobby"
+                                                        class="form-check-input">
+                                                    <label for="playGame" class="form-check-label">Play Game</label>
+                                                </div>
+                                                <div class="  col-md-5 col-12 form-check-inline">
+                                                    <input type="checkbox" id="reading1" value="Reading" name="hobby"
+                                                        class="form-check-input">
+                                                    <label for="reading1" class="form-check-label">Reading</label>
+                                                </div>
+                                                <div class=" col-md-5 col-12 form-check-inline">
+                                                    <input type="checkbox" id="exercise" value="Exercise" name="hobby"
+                                                        class="form-check-input">
+                                                    <label for="exercise" class="form-check-label">Exercise</label>
+                                                </div>
+                                                <span id="validHobby">Please Enter Minimum One Hobby Select</span>
+                                            </div>
+                                        </div>
+                                        <div class="row  mb-3 px-4" id="skills">
+                                            <div class=" col-md-2 px-2 pt-2 col-sm-4 col-6">
+                                                <label>Skills :-</label>
+                                            </div>
+                                            <div class="col-md-10 col-sm-8 col-6">
+                                                <div id="tags">
+                                                    <div id="ski"></div>
+                                                    <input type='text' value='' id='in' onchange=""
+                                                        placeholder='Add a skill' />
+                                                </div>
+                                            </div>
+                                            <span id="validSkill">Please Enter Minimum One Skill Select</span>
+                                        </div>
+                                        <div class="row text-center ">
+                                            <div class="col-6  " id="event1" style="display: block">
+                                                <button type="button" id="submit"
+                                                    class="btn px-5 btn-primary">Save</button>
+                                            </div>
+                                            <div class="col-6  " id="event2" style="display: none">
+                                                <button type="button" id="event"
+                                                    class="btn px-5 btn-primary">Save</button>
+                                            </div>
+                                            <div class="col-6   ">
+                                                <button type="button" id="close" onclick="myFunctionClose()"
+                                                    class="btn px-5 btn-danger" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="first.js"></script>
+    <script>
+        savePlayer();
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+    </script>
+</body>
+
+</html>
